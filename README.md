@@ -1,6 +1,6 @@
 # Dra. Laura Vanessa Quiceno — Ortodoncia
 
-Sitio web de una sola página (HTML5 + CSS3 + JavaScript ES6+), sin frameworks, sin build y sin dependencias externas. Fuentes autoalojadas. Listo para Cloudflare Pages.
+Sitio web de una sola página (HTML5 + CSS3 + JavaScript ES6+), sin frameworks y sin build. Todo es autoalojado: fuentes, íconos y las dos librerías de animación (GSAP y Lenis, en `js/vendor/`). Listo para Cloudflare Pages.
 
 ## Estructura
 
@@ -17,7 +17,10 @@ ortodoncia-quiceno/
 │       ├── fab.js            botón flotante de WhatsApp
 │       ├── reveal.js         entrada sutil de elementos
 │       ├── slider.js         casos clínicos (scroll nativo + botones)
-│       └── parallax.js       parallax sutil del hero
+│       ├── parallax.js       parallax sutil del hero
+│       ├── parallax-layers.js parallax por capas de "Sonríe con confianza" (GSAP ScrollTrigger)
+│       └── smooth-scroll.js  scroll suave con Lenis y enlaces internos
+│   └── vendor/               gsap.min.js y ScrollTrigger.min.js (GSAP 3.15), lenis.min.js (Lenis 1.3)
 ├── assets/
 │   ├── fonts/                Montserrat (titulares, la misma del logo) y DM Sans (cuerpo), subconjunto latin, woff2
 │   ├── images/               imágenes PLACEHOLDER (ver "Imágenes")
@@ -96,6 +99,7 @@ Las imágenes actuales son **placeholders** (en tonos vino y crema) con la etiqu
 |---|---|---|---|
 | `assets/images/hero.jpg` | 4:5 | 1200 × 1500 px | Hero (marco en arco; es la imagen LCP) |
 | `assets/images/doctora.jpg` | 4:5 | 1000 × 1250 px | Retrato en "La doctora" |
+| `assets/images/parallax-consultorio.jpg` | 16:9 | 1600 × 900 px o más | Fondo de la sección parallax (se tiñe de vino; hoy es un recorte desenfocado de la lámpara del consultorio) |
 | `assets/images/consultorio.jpg` | 4:3 | 1200 × 900 px | Contacto y ubicación |
 | `assets/images/caso-1.jpg`, `caso-2.jpg`, `caso-3.jpg` | 4:3 | 1200 × 900 px | Casos clínicos |
 
@@ -133,7 +137,13 @@ Otros datos a revisar:
 
 - **Tema:** el sitio abre siempre en claro (preferencia de marca). El tema oscuro es opcional: lo activa el visitante con el botón y se recuerda en su navegador.
 - **Dorado `#E9D6A2`:** solo en los botones de WhatsApp y en el logo sobre fondos oscuros. El texto sobre dorado es vino oscuro.
-- **Parallax:** solo en el hero, de unos 22 px como máximo. Se desactiva en pantallas menores a 48 em y con `prefers-reduced-motion`.
+- **Parallax del hero:** de unos 22 px como máximo. Se desactiva en pantallas menores a 48 em y con `prefers-reduced-motion`.
+- **Sección "Sonríe con confianza" (parallax por capas):** entre Tratamientos y Proceso. Una puerta en arco (el arco de la marca) se abre hacia el consultorio; detrás se mueven, a distinta velocidad, la foto, la sonrisa con brackets del logo y el título. Es una adaptación del componente de capas de Osmo (React + GSAP + Lenis) a este sitio sin React: la lógica está en `js/modules/parallax-layers.js` y las capas son `[data-parallax-layer="1…4"]` en `index.html`. Con `prefers-reduced-motion` o sin JavaScript queda como una composición estática.
+- **Scroll suave (Lenis):** solo con rueda o trackpad; en celulares el scroll sigue siendo el nativo. Se apaga con `prefers-reduced-motion`. Los enlaces del menú siguen respetando el header y mueven el foco a la sección.
+- **Tarjetas de tratamientos:** cada una abre con el arco de la marca y el aparato dibujado con el bracket del logo, dos datos para comparar (tipo y visibilidad) y un enlace de WhatsApp con el nombre del tratamiento ya escrito en el mensaje.
+- **Íconos:** WhatsApp es un símbolo SVG propio (`#icon-whatsapp`, de Simple Icons); el ícono de la sección parallax es `smile-plus` de Lucide, incrustado. No se carga Font Awesome: la CSP de `_headers` bloquea hojas de estilo externas.
+- **Botón verde de WhatsApp:** `#1A7F45` (en lugar de `#25D366`) para que el texto blanco cumpla contraste AA.
+- **¿Por qué no React, shadcn, Tailwind ni TypeScript?** El sitio es HTML estático sin build. Migrarlo (por ejemplo, Next.js + `npx shadcn@latest init`, que crea `components/ui/` y configura Tailwind y TypeScript) implicaría reescribir todo el sitio y añadir un paso de build en Cloudflare. Si algún día se migra, el componente original va en `components/ui/parallax-scrolling.tsx`, que es la carpeta que espera la CLI de shadcn para sus componentes.
 - **Sin formulario ni reservas:** el contacto va por WhatsApp, teléfono y correo, como indica CONFIG.
 - **Sin precios ni promesas de resultados o tiempos:** la sección de preguntas frecuentes lo dice con claridad.
 - **Red de seguridad sin JS:** si el módulo `main.js` no se ejecuta, `theme-init.js` quita la clase `js` a los 4 segundos y todo el contenido queda visible.

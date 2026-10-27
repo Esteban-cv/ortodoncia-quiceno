@@ -9,6 +9,8 @@ import { initFab } from './modules/fab.js';
 import { initReveal } from './modules/reveal.js';
 import { initSlider } from './modules/slider.js';
 import { initParallax } from './modules/parallax.js';
+import { initParallaxLayers } from './modules/parallax-layers.js';
+import { initSmoothScroll } from './modules/smooth-scroll.js';
 
 const root = document.documentElement;
 
@@ -22,3 +24,5 @@ initFab();
 initReveal();
 initSlider();
 initParallax();
+initParallaxLayers();
+initSmoothScroll();
