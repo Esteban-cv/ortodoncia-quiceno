@@ -29,7 +29,6 @@
   <!-- Fuentes autoalojadas: se precargan solo las que se usan sobre el primer pliegue -->
   <link rel="preload" href="assets/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
 
   <!-- Script síncrono anti-parpadeo del tema (ver comentario en el archivo) -->
   <script src="js/theme-init.js"></script>
@@ -178,6 +177,19 @@
           transform="translate(0 86)" stroke="none" />
       </g>
     </symbol>
+    <!-- Ícono de WhatsApp (Simple Icons, CC0) -->
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </symbol>
+    <!-- Bracket del logo, suelto, para las ilustraciones de tratamientos.
+         El relleno sale de --bracket-fill en el CSS (.bracket-shape); por defecto, el color del trazo. -->
+    <symbol id="bracket" viewBox="505 694 158 146">
+      <path
+        d="M515 628a10 10 0 0 1 10-10h42a10 10 0 0 1 10 10v22h14v-22a10 10 0 0 1 10-10h42a10 10 0 0 1 10 10v106a10 10 0 0 1-10 10h-42a10 10 0 0 1-10-10v-22h-14v22a10 10 0 0 1-10 10h-42a10 10 0 0 1-10-10Z"
+        transform="translate(0 86)" class="bracket-shape" stroke="currentColor"
+        stroke-width="12" stroke-linejoin="round" />
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -194,7 +206,7 @@
 
       <nav id="primary-nav" class="site-nav" aria-label="Principal" data-nav>
         <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="#doctora">¿Quien soy?</a></li>
+          <li><a class="site-nav__link" href="#doctora">¿Quién soy?</a></li>
           <li><a class="site-nav__link" href="#tratamientos">Tratamientos</a></li>
           <li><a class="site-nav__link" href="#proceso">Proceso</a></li>
           <li><a class="site-nav__link" href="#casos">Casos</a></li>
@@ -204,7 +216,7 @@
             <a class="btn btn--accent"
               href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia."
               target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-whatsapp icon fa-2x" aria-hidden="true"></i>
+              <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
               Agendar valoración
             </a>
           </li>
@@ -215,7 +227,7 @@
         <a class="btn btn--accent btn--sm header-cta"
           href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia."
           target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-whatsapp icon fa-1x" aria-hidden="true"></i>
+          <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
           Agendar valoración
         </a>
         <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Activar tema oscuro">
@@ -255,7 +267,7 @@
             <a class="btn btn--accent btn--lg" data-fab-hide
               href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia."
               target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-whatsapp icon fa-1.5x" aria-hidden="true"></i>
+              <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
               Agendar valoración por WhatsApp
             </a>
             <a class="btn btn--outline btn--lg" href="#tratamientos">Ver tratamientos</a>
@@ -271,7 +283,7 @@
             </div>
             <div class="hero__fact">
               <dt>Consultorio</dt>
-              <dd>{Por definir}, Cali</dd>
+              <dd>Carrera 16 #13a-54, Cali</dd>
             </div>
           </dl>
         </div>
@@ -291,7 +303,7 @@
       <div class="container about__grid">
         <figure class="about__photo reveal">
           <!-- REEMPLAZAR_IMAGEN: assets/images/doctora.jpg, proporción 4:5, recomendado 1000×1250 px. Retrato profesional. -->
-          <img src="assets/images/Gemini_Generated_Image_beq8mebeq8mebeq8.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+          <img src="assets/images/doctora.jpg" width="1000" height="1241" loading="lazy" decoding="async"
             alt="Retrato de la Dra. Laura Quiceno">
         </figure>
 
@@ -331,37 +343,176 @@
           <p class="section__intro">Cada plan se define después de la valoración y se adapta a tus necesidades.</p>
         </div>
 
+        <!-- Cada tarjeta: arco con la ilustración del aparato, descripción, dos datos para comparar
+             y un enlace de WhatsApp con el tratamiento ya escrito en el mensaje. -->
         <ul class="cards">
-          <li class="card reveal">
-            <h3 class="card__title">Brackets tradicionales (metálicos)</h3>
-            <p>La opción clásica, resistente y súper efectiva. Perfecta para corregir cualquier tipo de alineación o
-              mordida de manera precisa y segura.</p>
+          <li class="card treatment reveal">
+            <div class="treatment__arch" aria-hidden="true">
+              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
+                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
+                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+              </svg>
+            </div>
+            <div class="treatment__body">
+              <h3 class="card__title">Brackets tradicionales (metálicos)</h3>
+              <p>La opción clásica, resistente y súper efectiva. Perfecta para corregir cualquier tipo de alineación o
+                mordida de manera precisa y segura.</p>
+              <dl class="treatment__facts">
+                <div><dt>Tipo</dt><dd>Fijo</dd></div>
+                <div><dt>Visibilidad</dt><dd>Visible</dd></div>
+              </dl>
+              <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20brackets%20met%C3%A1licos.">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+                Preguntar por WhatsApp<span class="visually-hidden"> sobre brackets metálicos</span>
+              </a>
+            </div>
           </li>
 
-          <li class="card reveal">
-            <h3 class="card__title">Brackets estéticos (cerámica o zafiro)</h3>
-            <p>Pensados para quienes buscan discreción. Mimetizan el tono de tus dientes para que realices tu
-              tratamiento con total confianza y sin perder tu estética.</p>
+          <li class="card treatment reveal">
+            <div class="treatment__arch" aria-hidden="true">
+              <svg class="treatment__art treatment__art--clear" viewBox="0 0 160 100" focusable="false">
+                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
+                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
+              </svg>
+            </div>
+            <div class="treatment__body">
+              <h3 class="card__title">Brackets estéticos (cerámica o zafiro)</h3>
+              <p>Pensados para quienes buscan discreción. Mimetizan el tono de tus dientes para que realices tu
+                tratamiento con total confianza y sin perder tu estética.</p>
+              <dl class="treatment__facts">
+                <div><dt>Tipo</dt><dd>Fijo</dd></div>
+                <div><dt>Visibilidad</dt><dd>Discreta</dd></div>
+              </dl>
+              <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20brackets%20est%C3%A9ticos.">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+                Preguntar por WhatsApp<span class="visually-hidden"> sobre brackets estéticos</span>
+              </a>
+            </div>
           </li>
 
-          <li class="card reveal">
-            <h3 class="card__title">Brackets autoligables</h3>
-            <p>Tecnología avanzada que no necesita elasticos. Permiten un movimiento dental más fluido, facilitan la
-              higiene diaria y hacen las citas de control más ágiles.</p>
+          <li class="card treatment reveal">
+            <div class="treatment__arch" aria-hidden="true">
+              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
+                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
+                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
+                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
+                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
+              </svg>
+            </div>
+            <div class="treatment__body">
+              <h3 class="card__title">Brackets autoligables</h3>
+              <p>Tecnología avanzada que no necesita elásticos. Permiten un movimiento dental más fluido, facilitan la
+                higiene diaria y hacen las citas de control más ágiles.</p>
+              <dl class="treatment__facts">
+                <div><dt>Tipo</dt><dd>Fijo</dd></div>
+                <div><dt>Visibilidad</dt><dd>Metálicos o estéticos</dd></div>
+              </dl>
+              <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20brackets%20autoligables.">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+                Preguntar por WhatsApp<span class="visually-hidden"> sobre brackets autoligables</span>
+              </a>
+            </div>
           </li>
 
-          <li class="card reveal">
-            <h3 class="card__title">Alineadores invisibles</h3>
-            <p>Placas transparentes y removibles hechas a tu medida. Te permiten comer sin restricciones y cepillarte
-              con total comodidad mientras transformas tu sonrisa casi sin que lo noten.</p>
+          <li class="card treatment reveal">
+            <div class="treatment__arch" aria-hidden="true">
+              <!-- Vista superior de la arcada con la placa transparente -->
+              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
+                <path class="treatment__wire" d="M38 96C38 34 58 10 80 10S122 34 122 96" />
+                <path class="treatment__wire" d="M56 96C56 44 66 28 80 28S104 44 104 96" />
+                <path class="treatment__wire treatment__wire--dashed" d="M47 96C47 39 62 19 80 19S113 39 113 96" />
+              </svg>
+            </div>
+            <div class="treatment__body">
+              <h3 class="card__title">Alineadores invisibles</h3>
+              <p>Placas transparentes y removibles hechas a tu medida. Te permiten comer sin restricciones y cepillarte
+                con total comodidad mientras transformas tu sonrisa casi sin que lo noten.</p>
+              <dl class="treatment__facts">
+                <div><dt>Tipo</dt><dd>Removible</dd></div>
+                <div><dt>Visibilidad</dt><dd>Casi imperceptible</dd></div>
+              </dl>
+              <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20alineadores%20invisibles.">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+                Preguntar por WhatsApp<span class="visually-hidden"> sobre alineadores invisibles</span>
+              </a>
+            </div>
           </li>
 
-          <li class="card reveal">
-            <h3 class="card__title">Aparatos ortopédicos y retención</h3>
-            <p>Guiamos el crecimiento de los huesos maxilares en niños para prevenir problemas futuros, y aseguramos que
-              tu sonrisa se mantenga firme y hermosa al finalizar tu tratamiento.</p>
+          <li class="card treatment reveal">
+            <div class="treatment__arch" aria-hidden="true">
+              <!-- Vista superior de la arcada con un expansor en el paladar -->
+              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
+                <path class="treatment__wire treatment__wire--bold" d="M44 96C44 37 61 15 80 15S116 37 116 96" />
+                <path class="treatment__wire" d="M69 52 50 46M69 64 47 70M91 52 110 46M91 64 113 70" />
+                <rect class="treatment__plate" x="68" y="48" width="24" height="20" rx="4" />
+                <circle class="treatment__screw" cx="80" cy="58" r="4.5" />
+              </svg>
+            </div>
+            <div class="treatment__body">
+              <h3 class="card__title">Aparatos ortopédicos y retención</h3>
+              <p>Guiamos el crecimiento de los huesos maxilares en niños para prevenir problemas futuros, y aseguramos que
+                tu sonrisa se mantenga firme y hermosa al finalizar tu tratamiento.</p>
+              <dl class="treatment__facts">
+                <div><dt>Tipo</dt><dd>Fijo o removible</dd></div>
+                <div><dt>Etapa</dt><dd>Crecimiento y final del tratamiento</dd></div>
+              </dl>
+              <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20aparatos%20ortop%C3%A9dicos%20y%20retenci%C3%B3n.">
+                <svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+                Preguntar por WhatsApp<span class="visually-hidden"> sobre aparatos ortopédicos y retención</span>
+              </a>
+            </div>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============ PARALLAX (puerta en arco hacia la consulta) ============
+         Cuatro capas que se mueven a distinta velocidad con GSAP ScrollTrigger (js/modules/parallax-layers.js):
+         1 fondo fotográfico, 2 sonrisa con brackets del logo, 3 título, 4 marco en arco (la capa más cercana).
+         Sin JS o con movimiento reducido queda como una composición estática. -->
+    <section class="parallax" aria-labelledby="parallax-title">
+      <div class="parallax__header">
+        <div class="parallax__layers" data-parallax-layers>
+          <!-- REEMPLAZAR_IMAGEN (opcional): assets/images/parallax-consultorio.jpg, horizontal, 1600×900 px o más.
+               Hoy es un recorte desenfocado de la lámpara del consultorio (de doctora-v2.jpg). Se tiñe de vino desde
+               abajo para que el título se lea. Sirve otra foto del consultorio o de una sonrisa (con consentimiento).
+               El alt queda vacío porque es decorativa. -->
+          <div class="parallax__layer parallax__photo" data-parallax-layer="1">
+            <img src="assets/images/parallax-consultorio.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="">
+          </div>
+          <div class="parallax__layer parallax__smile" data-parallax-layer="2" aria-hidden="true">
+            <svg viewBox="0 0 1030 450" focusable="false"><use href="#logo-sonrisa" /></svg>
+          </div>
+          <div class="parallax__layer parallax__title-wrap" data-parallax-layer="3">
+            <h2 class="parallax__title" id="parallax-title">Sonríe con confianza</h2>
+          </div>
+          <div class="parallax__layer parallax__frame" data-parallax-layer="4" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="container parallax__content">
+        <svg class="parallax__icon" viewBox="0 0 24 24" width="48" height="48" aria-hidden="true" focusable="false"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Lucide "smile-plus" (ISC) -->
+          <path d="M13.267 2.08a10 10 0 108.653 8.653" />
+          <path d="M15 10V9" />
+          <path d="M16 5h6" />
+          <path d="M16.472 15a6 6 0 01-8.943 0" />
+          <path d="M19 2v6" />
+          <path d="M9 10V9" />
+        </svg>
+        <p class="parallax__text">Cada sonrisa tiene su propio ritmo. Antes de empezar te explico qué haremos en cada
+          etapa, para que siempre sepas en qué punto vas.</p>
+        <a class="btn btn--outline" href="#proceso">Ver cómo es el proceso</a>
       </div>
     </section>
 
@@ -369,7 +520,7 @@
     <section class="section section--band process" id="proceso" aria-labelledby="process-title">
       <div class="container">
         <div class="section__header">
-          <svg class="ornament" viewBox="0 0 1030.0 450.0" width="72" height="31" aria-hidden="true" focusable="false">
+          <svg class="ornament" viewBox="0 0 1046.0 802.0" width="72" height="55" aria-hidden="true" focusable="false">
             <use href="#logo-monograma" />
           </svg>
           <h2 id="process-title">Cómo es el proceso</h2>
@@ -518,7 +669,7 @@
         <a class="btn btn--accent btn--lg"
           href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia."
           target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-whatsapp icon" aria-hidden="true"></i>
+          <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
           Escribir por WhatsApp
         </a>
       </div>
@@ -604,13 +755,18 @@
     <a class="wa-fab" data-fab
       href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia"
       target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp para agendar una valoración">
-      <i class="fa-brands fa-whatsapp icon fa-1x" aria-hidden="true"></i>
+      <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
 
       <span class="wa-fab__label">WhatsApp</span>
     </a>
   </div>
 
 
+  <!-- GSAP + ScrollTrigger (parallax por capas) y Lenis (scroll suave), autoalojados en js/vendor.
+       Con defer se ejecutan en orden y antes que main.js (los módulos también son diferidos). -->
+  <script defer src="js/vendor/gsap.min.js"></script>
+  <script defer src="js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="js/vendor/lenis.min.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 
