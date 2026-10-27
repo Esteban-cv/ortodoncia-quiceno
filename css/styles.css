@@ -47,6 +47,8 @@
   --color-on-band-muted: #E6D3B3;
   --color-on-band-line: rgba(233, 214, 162, 0.45);
   --color-footer-bg: #3E0D1D;
+  --color-zoom-bg: #2A0A14;
+  /* galería zoom */
   --color-focus: #5C1329;
 
   /* Tipografía */
@@ -118,6 +120,7 @@
   --color-on-band-muted: #E6D3B3;
   --color-on-band-line: rgba(233, 214, 162, 0.45);
   --color-footer-bg: #14060B;
+  --color-zoom-bg: #2A0A14;
   --color-focus: #E9D6A2;
 
   --shadow-hover: 0 12px 28px -16px rgba(0, 0, 0, 0.7);
@@ -954,9 +957,9 @@ html:not(.js) .menu-toggle {
 
 /* --------------------------------------------------------------------------
    9. TRATAMIENTOS
-   Cada tarjeta abre con el ARCO de la marca (el mismo del hero) y, dentro, el aparato
-   dibujado con el bracket del logo. Abajo, dos datos para comparar (tipo y visibilidad)
-   y un enlace de WhatsApp con el tratamiento ya escrito.
+   Cada tarjeta abre con la foto del tratamiento dentro del ARCO de la marca (el mismo del
+   hero). Abajo, dos datos para comparar (tipo y visibilidad) y un enlace de WhatsApp con
+   el tratamiento ya escrito.
    -------------------------------------------------------------------------- */
 .cards {
   display: grid;
@@ -992,88 +995,23 @@ html:not(.js) .menu-toggle {
   color: var(--color-ink-muted);
 }
 
-/* Ventana en arco con la ilustración. Al pasar el cursor se "enciende": vino con trazo dorado. */
-.treatment__arch {
-  --art-ink: var(--color-primary);
-  --art-bg: var(--color-surface-tint);
-  display: grid;
-  place-items: end center;
-  aspect-ratio: 16 / 9;
-  padding: 12% 14% 4%;
-  border-radius: 50% 50% calc(var(--radius-md) - 0.35rem) calc(var(--radius-md) - 0.35rem) / 62% 62% calc(var(--radius-md) - 0.35rem) calc(var(--radius-md) - 0.35rem);
-  background: var(--art-bg);
-  color: var(--art-ink);
-  transition:
-    background-color var(--dur-base) var(--ease),
-    color var(--dur-base) var(--ease);
+/* Foto del tratamiento dentro del arco de la marca (el mismo del hero) */
+.treatment__photo {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 50% 50% calc(var(--radius-md) - 0.35rem) calc(var(--radius-md) - 0.35rem) / 34% 34% calc(var(--radius-md) - 0.35rem) calc(var(--radius-md) - 0.35rem);
+  background: var(--color-surface-tint);
 }
 
-.card:hover .treatment__arch,
-.card:focus-within .treatment__arch {
-  --art-ink: var(--color-accent);
-  --art-bg: var(--color-primary);
-}
-
-:root[data-theme="dark"] .card:hover .treatment__arch,
-:root[data-theme="dark"] .card:focus-within .treatment__arch {
-  --art-ink: var(--color-on-primary);
-  --art-bg: var(--color-accent);
-}
-
-.treatment__art {
+.treatment__photo img {
   width: 100%;
-  max-width: 15rem;
-  height: auto;
-  overflow: visible;
-  transition: transform var(--dur-base) var(--ease);
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease);
 }
 
-.card:hover .treatment__art {
-  transform: translateY(-3%);
-}
-
-.treatment__wire {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-
-.treatment__wire--bold {
-  stroke-width: 5;
-}
-
-.treatment__wire--dashed {
-  stroke-width: 1.5;
-  stroke-dasharray: 5 5;
-}
-
-.bracket-shape {
-  fill: var(--bracket-fill, currentColor);
-}
-
-/* Brackets estéticos: cuerpo del color del diente y arco fino */
-.treatment__art--clear {
-  --bracket-fill: var(--color-surface);
-}
-
-.treatment__art--clear .treatment__wire {
-  stroke-width: 1.5;
-}
-
-/* Autoligables: la "puerta" que sujeta el arco sin elásticos */
-.treatment__clip {
-  fill: var(--art-bg);
-}
-
-.treatment__plate {
-  fill: var(--art-bg);
-  stroke: currentColor;
-  stroke-width: 2.5;
-}
-
-.treatment__screw {
-  fill: currentColor;
+.card:hover .treatment__photo img {
+  transform: scale(1.04);
 }
 
 .treatment__body {
@@ -1158,140 +1096,138 @@ html:not(.js) .menu-toggle {
     align-items: stretch;
   }
 
-  .card:nth-child(n + 4) .treatment__arch {
+  .card:nth-child(n + 4) .treatment__photo {
     aspect-ratio: 4 / 5;
     align-self: start;
-    padding: 30% 10% 14%;
     border-radius: var(--radius-arch);
   }
 }
 
 /* --------------------------------------------------------------------------
-   9b. PARALLAX "Sonríe con confianza"
-   Una puerta en arco (capa 4, la más cercana) abre hacia la consulta: foto teñida de vino
-   (capa 1), la sonrisa con brackets del logo en dorado (capa 2) y el título (capa 3).
-   GSAP mueve las capas (js/modules/parallax-layers.js); sin JS es una composición estática.
+   9b. ZOOM PARALLAX "Sonríe con confianza"
+   Siete fotos en collage alrededor de una central. Con JS la pista mide 300vh y la escena
+   queda fija (sticky) mientras GSAP escala cada foto (js/modules/zoom-parallax.js); la del
+   centro termina a pantalla completa y aparece el mensaje. Sin JS: collage estático de 100vh.
+   Posiciones y tamaños: los del componente original, ajustados para móvil.
    -------------------------------------------------------------------------- */
-.parallax {
-  --frame-inset: clamp(0.75rem, 6vw, 6rem);
-  --frame-top: clamp(1.5rem, 6vw, 4.5rem);
-  position: relative;
+/* Fondo vino muy oscuro: las fotos resaltan y enlaza con la banda vino de Proceso */
+.zoom {
+  --color-focus: var(--color-on-band);
+  padding-top: var(--section-pad);
+  background: var(--color-zoom-bg);
+  color: var(--color-on-band);
 }
 
-.parallax__header {
-  position: relative;
-  height: clamp(30rem, 90svh, 56rem);
+.zoom h2 {
+  color: var(--color-on-band);
 }
 
-.parallax__layers {
+.zoom .section__intro {
+  color: var(--color-on-band-muted);
+}
+
+.zoom__intro {
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.zoom__intro .section__intro {
+  margin-inline: auto;
+}
+
+.zoom__track {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+}
+
+.zoom__track.is-zooming {
+  height: 300vh;
+}
+
+/* Queda fija justo debajo del header para que ninguna foto quede tapada */
+.zoom__stage {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  height: calc(100svh - var(--header-h));
+  overflow: hidden;
+}
+
+.zoom__item {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sin will-change a propósito: con él, Chrome rasteriza la foto a su tamaño pequeño y al
+   escalarla 4-9 veces se pixela. Así se repinta nítida en cada tamaño. */
+.zoom__frame {
+  position: relative;
+  width: 25vw;
+  height: 25vh;
   overflow: hidden;
-  background: var(--color-band);
+  border-radius: 0.25rem;
+  background: rgb(233 214 162 / 0.08);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 0.35);
 }
 
-.parallax__layer {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  will-change: transform;
-}
-
-/* Más alta que la sección para que el recorrido nunca deje huecos */
-.parallax__photo {
-  top: -20%;
-  height: 140%;
-}
-
-.parallax__photo img {
+.zoom__frame img {
   width: 100%;
   height: 100%;
-  max-width: none;
   object-fit: cover;
-  object-position: center top;
 }
 
-/* Velo vino: suave arriba (se ve la consulta), denso abajo (se lee el título) */
-.parallax__photo::after {
-  content: "";
+/* Collage (escritorio y tablet): mismas posiciones que el componente original */
+.zoom__frame--2 { top: -30vh; left: 5vw;    width: 35vw; height: 30vh; }
+.zoom__frame--3 { top: -10vh; left: -25vw;  width: 20vw; height: 45vh; }
+.zoom__frame--4 {             left: 27.5vw; width: 25vw; height: 25vh; }
+.zoom__frame--5 { top: 27.5vh; left: 5vw;   width: 20vw; height: 25vh; }
+.zoom__frame--6 { top: 27.5vh; left: -22.5vw; width: 30vw; height: 25vh; }
+.zoom__frame--7 { top: 22.5vh; left: 25vw;  width: 15vw; height: 15vh; }
+
+/* Móvil (vertical): fotos más anchas para que se lean */
+@media (max-width: 47.99em) {
+  .zoom__frame--1 { width: 50vw; height: 25vh; }
+  .zoom__frame--2 { top: -27vh; left: 10vw;  width: 56vw; height: 18vh; }
+  .zoom__frame--3 { top: -6vh;  left: -38vw; width: 22vw; height: 30vh; }
+  .zoom__frame--4 { top: -2vh;  left: 38vw;  width: 22vw; height: 20vh; }
+  .zoom__frame--5 { top: 25vh;  left: 12vw;  width: 44vw; height: 17vh; }
+  .zoom__frame--6 { top: 21vh;  left: -34vw; width: 26vw; height: 14vh; }
+  .zoom__frame--7 { top: -27vh; left: -36vw; width: 26vw; height: 10vh; }
+}
+
+/* Mensaje final: no escala; un velo vino lo hace legible sobre la foto */
+.zoom__message {
+  display: none;
+}
+
+.is-zooming .zoom__message {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,
-      rgb(42 10 20 / 0.25) 20%,
-      rgb(92 19 41 / 0.7) 55%,
-      rgb(42 10 20 / 0.92) 80%);
-}
-
-.parallax__smile {
-  top: 50%;
-  display: flex;
-  justify-content: center;
-  color: var(--color-accent);
-  opacity: 0.9;
-}
-
-.parallax__smile svg {
-  width: min(70vw, 44rem);
-  height: auto;
-}
-
-.parallax__title-wrap {
-  top: 22%;
+  z-index: 2;
   display: grid;
-  place-items: center;
-  padding-inline: calc(var(--frame-inset) + 1.5rem);
-}
-
-.parallax__title {
-  max-width: 12ch;
-  color: var(--color-on-band);
-  font-size: clamp(2.75rem, 1.2rem + 7vw, 7.5rem);
-  font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  text-align: center;
-}
-
-/* La puerta: el hueco en arco es el propio elemento; su sombra gigante pinta el muro crema */
-.parallax__frame {
-  top: var(--frame-top);
-  bottom: -12%;
-  left: var(--frame-inset);
-  width: auto;
-  right: var(--frame-inset);
-  border-radius: 50% 50% 0 0 / clamp(8rem, 30vw, 22rem) clamp(8rem, 30vw, 22rem) 0 0;
-  box-shadow: 0 0 0 200vmax var(--color-bg);
-  pointer-events: none;
-}
-
-/* Contorno desplazado, como el marco del hero */
-.parallax__frame::after {
-  content: "";
-  position: absolute;
-  inset: calc(var(--arch-offset) * -1) calc(var(--arch-offset) * -1) 0;
-  border: 1.5px solid var(--color-line-strong);
-  border-bottom: 0;
-  border-radius: inherit;
-}
-
-.parallax__content {
-  display: grid;
+  align-content: center;
   justify-items: center;
   gap: var(--space-lg);
-  padding-block: clamp(3rem, 6vw, 5rem) var(--section-pad);
+  padding: var(--gutter);
+  background: linear-gradient(180deg, rgb(42 10 20 / 0.15), rgb(42 10 20 / 0.62));
   text-align: center;
+  visibility: hidden;
 }
 
-.parallax__icon {
-  width: 3rem;
-  height: 3rem;
-  color: var(--color-primary);
-}
-
-.parallax__text {
-  max-width: 34rem;
-  color: var(--color-ink);
-  font-size: var(--fs-lg);
+.zoom__message-title {
+  max-width: 14ch;
+  margin: 0;
+  color: #FBF4E4;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.2rem + 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 /* --------------------------------------------------------------------------
@@ -1871,7 +1807,7 @@ html:not(.js) .slider__controls {
 
   .btn:hover,
   .card:hover,
-  .card:hover .treatment__art {
+  .card:hover .treatment__photo img {
     transform: none;
   }
-}
+}

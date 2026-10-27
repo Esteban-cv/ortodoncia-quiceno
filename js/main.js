@@ -9,7 +9,7 @@ import { initFab } from './modules/fab.js';
 import { initReveal } from './modules/reveal.js';
 import { initSlider } from './modules/slider.js';
 import { initParallax } from './modules/parallax.js';
-import { initParallaxLayers } from './modules/parallax-layers.js';
+import { initZoomParallax } from './modules/zoom-parallax.js?v=4';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 
 const root = document.documentElement;
@@ -24,5 +24,5 @@ initFab();
 initReveal();
 initSlider();
 initParallax();
-initParallaxLayers();
+initZoomParallax();
 initSmoothScroll();

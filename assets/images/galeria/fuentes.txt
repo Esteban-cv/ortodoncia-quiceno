@@ -1,0 +1,12 @@
+Fotos PROVISIONALES de bancos libres (licencia Unsplash / Pexels: uso comercial gratis, sin atribución obligatoria).
+Reemplazarlas por fotos propias (consultorio, equipo, pacientes con consentimiento) conservando el nombre.
+
+zoom-1.jpg  (centro, termina a pantalla completa)  Unsplash  https://images.unsplash.com/photo-1629909613654-28e377c37b09
+zoom-2.jpg  Unsplash  https://images.unsplash.com/photo-1758874384842-7e79ce77ed1a
+zoom-3.jpg  Unsplash  https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e
+zoom-4.jpg  Unsplash B9lLokDYTMY  Katarzyna Zygnerska  https://unsplash.com/photos/B9lLokDYTMY
+zoom-5.jpg  Pexels 6311668  Gabby K  https://www.pexels.com/photo/6311668/
+zoom-6.jpg  Unsplash  https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2
+zoom-7.jpg  Unsplash  https://images.unsplash.com/photo-1698749778813-ad5f2814e50f
+
+../hero-provisional.jpg (portada)  Unsplash  https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe

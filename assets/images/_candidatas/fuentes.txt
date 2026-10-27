@@ -1,0 +1,42 @@
+﻿Archivo	Pagina fuente	Fotografo
+met-1.jpg	https://unsplash.com/photos/hKaYlAF1nDw	Atikah Akhtar
+met-2.jpg	https://unsplash.com/photos/P8ernb_Ht-M	Katarzyna Zygnerska
+met-3.jpg	https://www.pexels.com/photo/5524021/	Anna Avilova
+met-4.jpg	https://www.pexels.com/photo/6311668/	Gabby K
+met-5.jpg	https://www.pexels.com/photo/3812720/	(no indicado)
+cer-1.jpg	https://www.pexels.com/photo/7665702/	Lara Chara
+cer-2.jpg	https://www.pexels.com/photo/16961166/	Alina Rossoshanska
+cer-3.jpg	https://www.pexels.com/photo/16961221/	Alina Rossoshanska
+mod-1.jpg	https://unsplash.com/photos/cx3JCL5PDew	Harold Hisona
+mod-2.jpg	https://unsplash.com/photos/B9lLokDYTMY	Katarzyna Zygnerska
+mod-3.jpg	https://www.pexels.com/photo/6502309/	cottonbro studio
+mod-4.jpg	https://www.pexels.com/photo/13207278/	Kaplanart
+mod-5.jpg	https://www.pexels.com/photo/6502294/	cottonbro studio
+ali-1.jpg	https://unsplash.com/photos/fmB7IdFjhTM	Diana Polekhina
+ali-2.jpg	https://unsplash.com/photos/uTUsnv_UCSQ	Harold Hisona
+ali-3.jpg	https://images.unsplash.com/photo-1564420228450-d9a5bc8d6565	(no indicado)
+ali-4.jpg	https://www.pexels.com/photo/3845985/	Shvets (shvetsa)
+ali-5.jpg	https://www.pexels.com/photo/28407749/	Laura Villela (itslauravillela)
+ret-1.jpg	https://www.pexels.com/photo/35000862/	Tuan Dang Quoc
+ret-2.jpg	https://unsplash.com/photos/9weq9N2dnfQ	Katarzyna Zygnerska
+ret-3.jpg	https://www.pexels.com/photo/13207280/	Kaplanart
+hero-1.jpg	https://unsplash.com/photos/Q_o_ob-3Ny4	Diana Polekhina
+hero-2.jpg	https://images.unsplash.com/photo-1777331903190-341a3dd0441b	(no indicado)
+hero-3.jpg	https://images.unsplash.com/photo-1606811971618-4486d14f3f99	(no indicado)
+hero-4.jpg	https://www.pexels.com/photo/28470229/	Roberto Junior
+hero-5.jpg	https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2	(no indicado)
+hero-6.jpg	https://images.unsplash.com/photo-1562337404-3044c84ac061	(no indicado)
+con-1.jpg	https://images.unsplash.com/photo-1629909613654-28e377c37b09	(no indicado)
+con-2.jpg	https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e	(no indicado)
+con-3.jpg	https://images.unsplash.com/photo-1598256989800-fe5f95da9787	(no indicado)
+con-4.jpg	https://images.unsplash.com/photo-1698749778813-ad5f2814e50f	(no indicado)
+son-1.jpg	https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed	(no indicado)
+son-2.jpg	https://images.unsplash.com/photo-1548382131-e0ebb1f0cdea	(no indicado)
+son-3.jpg	https://images.unsplash.com/photo-1567516364473-233c4b6fcfbe	(no indicado)
+son-4.jpg	https://images.unsplash.com/photo-1611695434369-a8f5d76ceb7b	(no indicado)
+son-5.jpg	https://images.unsplash.com/photo-1758874384842-7e79ce77ed1a	(no indicado)
+cer-extra-1.jpg	https://www.pexels.com/photo/treating-of-a-teeth-with-braces-6528907/	cottonbro studio  (brackets ceramicos confirmados visualmente)
+auto-1.jpg	https://www.pexels.com/photo/hands-of-dentist-with-dental-tweezers-and-brace-system-7787976/	babydov  (kit de brackets con pinza; NO confirmado como autoligado)
+
+exp-*: no se encontro ninguna foto gratuita de expansor palatino ni Hawley en Pexels/Unsplash.
+Fotografo '(no indicado)' = archivo de la lista original sin pagina de fuente consultada.

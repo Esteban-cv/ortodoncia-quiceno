@@ -32,7 +32,7 @@
 
   <!-- Script síncrono anti-parpadeo del tema (ver comentario en el archivo) -->
   <script src="js/theme-init.js"></script>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=3">
 
   <!-- Datos estructurados: solo información real proporcionada. Sin reseñas ni valoraciones. -->
   <script type="application/ld+json">
@@ -182,14 +182,6 @@
       <path fill="currentColor"
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
     </symbol>
-    <!-- Bracket del logo, suelto, para las ilustraciones de tratamientos.
-         El relleno sale de --bracket-fill en el CSS (.bracket-shape); por defecto, el color del trazo. -->
-    <symbol id="bracket" viewBox="505 694 158 146">
-      <path
-        d="M515 628a10 10 0 0 1 10-10h42a10 10 0 0 1 10 10v22h14v-22a10 10 0 0 1 10-10h42a10 10 0 0 1 10 10v106a10 10 0 0 1-10 10h-42a10 10 0 0 1-10-10v-22h-14v22a10 10 0 0 1-10 10h-42a10 10 0 0 1-10-10Z"
-        transform="translate(0 86)" class="bracket-shape" stroke="currentColor"
-        stroke-width="12" stroke-linejoin="round" />
-    </symbol>
   </svg>
 
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -290,9 +282,10 @@
 
         <figure class="hero__media" data-parallax>
           <div class="hero__arch">
-            <!-- REEMPLAZAR_IMAGEN: assets/images/hero.jpg, proporción 4:5, recomendado 1200×1500 px (JPG/WebP, menos de 200 KB). Actualizar el alt según la foto real. Es la imagen LCP: sin lazy. -->
-            <img class="hero__img" src="assets/images/hero.jpg" width="1200" height="1500" fetchpriority="high"
-              decoding="async" alt="Consultorio de ortodoncia de la Dra. Laura Quiceno">
+            <!-- FOTO PROVISIONAL (Unsplash, ver assets/images/galeria/fuentes.txt). La foto original de la doctora sigue en assets/images/hero.jpg.
+                 REEMPLAZAR_IMAGEN: proporción 4:5, recomendado 1200×1500 px (JPG/WebP, menos de 200 KB). Actualizar el alt según la foto real. Es la imagen LCP: sin lazy. -->
+            <img class="hero__img" src="assets/images/hero-provisional.jpg" width="1200" height="1500" fetchpriority="high"
+              decoding="async" alt="Mujer sonriendo con naturalidad">
           </div>
         </figure>
       </div>
@@ -343,18 +336,14 @@
           <p class="section__intro">Cada plan se define después de la valoración y se adapta a tus necesidades.</p>
         </div>
 
-        <!-- Cada tarjeta: arco con la ilustración del aparato, descripción, dos datos para comparar
+        <!-- Cada tarjeta: foto del tratamiento en el arco de la marca, descripción, dos datos para comparar
              y un enlace de WhatsApp con el tratamiento ya escrito en el mensaje. -->
         <ul class="cards">
           <li class="card treatment reveal">
-            <div class="treatment__arch" aria-hidden="true">
-              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
-                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
-                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-              </svg>
-            </div>
+            <figure class="treatment__photo">
+              <!-- Foto provisional (ver assets/images/tratamientos/fuentes.txt). Reemplazar por fotos propias cuando existan. -->
+              <img src="assets/images/tratamientos/brackets-metalicos.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Sonrisa con brackets metálicos">
+            </figure>
             <div class="treatment__body">
               <h3 class="card__title">Brackets tradicionales (metálicos)</h3>
               <p>La opción clásica, resistente y súper efectiva. Perfecta para corregir cualquier tipo de alineación o
@@ -372,14 +361,10 @@
           </li>
 
           <li class="card treatment reveal">
-            <div class="treatment__arch" aria-hidden="true">
-              <svg class="treatment__art treatment__art--clear" viewBox="0 0 160 100" focusable="false">
-                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
-                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /></g>
-              </svg>
-            </div>
+            <figure class="treatment__photo">
+              <!-- Foto provisional (ver assets/images/tratamientos/fuentes.txt). Reemplazar por fotos propias cuando existan. -->
+              <img src="assets/images/tratamientos/brackets-esteticos.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Modelo dental con brackets estéticos del color de los dientes">
+            </figure>
             <div class="treatment__body">
               <h3 class="card__title">Brackets estéticos (cerámica o zafiro)</h3>
               <p>Pensados para quienes buscan discreción. Mimetizan el tono de tus dientes para que realices tu
@@ -397,14 +382,10 @@
           </li>
 
           <li class="card treatment reveal">
-            <div class="treatment__arch" aria-hidden="true">
-              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
-                <path class="treatment__wire" d="M10 40Q80 85 150 40" />
-                <g transform="translate(38 54.4) rotate(21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
-                <g transform="translate(80 62.5)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
-                <g transform="translate(122 54.4) rotate(-21)"><use href="#bracket" x="-12" y="-11" width="24" height="22" /><rect class="treatment__clip" x="-8" y="-2.5" width="16" height="5" rx="2.5" /></g>
-              </svg>
-            </div>
+            <figure class="treatment__photo">
+              <!-- Foto provisional (ver assets/images/tratamientos/fuentes.txt). Reemplazar por fotos propias cuando existan. -->
+              <img src="assets/images/tratamientos/brackets-autoligables.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Especialista tomando un bracket con pinzas de ortodoncia">
+            </figure>
             <div class="treatment__body">
               <h3 class="card__title">Brackets autoligables</h3>
               <p>Tecnología avanzada que no necesita elásticos. Permiten un movimiento dental más fluido, facilitan la
@@ -422,14 +403,10 @@
           </li>
 
           <li class="card treatment reveal">
-            <div class="treatment__arch" aria-hidden="true">
-              <!-- Vista superior de la arcada con la placa transparente -->
-              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
-                <path class="treatment__wire" d="M38 96C38 34 58 10 80 10S122 34 122 96" />
-                <path class="treatment__wire" d="M56 96C56 44 66 28 80 28S104 44 104 96" />
-                <path class="treatment__wire treatment__wire--dashed" d="M47 96C47 39 62 19 80 19S113 39 113 96" />
-              </svg>
-            </div>
+            <figure class="treatment__photo">
+              <!-- Foto provisional (ver assets/images/tratamientos/fuentes.txt). Reemplazar por fotos propias cuando existan. -->
+              <img src="assets/images/tratamientos/alineadores.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Persona colocándose un alineador transparente">
+            </figure>
             <div class="treatment__body">
               <h3 class="card__title">Alineadores invisibles</h3>
               <p>Placas transparentes y removibles hechas a tu medida. Te permiten comer sin restricciones y cepillarte
@@ -447,15 +424,10 @@
           </li>
 
           <li class="card treatment reveal">
-            <div class="treatment__arch" aria-hidden="true">
-              <!-- Vista superior de la arcada con un expansor en el paladar -->
-              <svg class="treatment__art" viewBox="0 0 160 100" focusable="false">
-                <path class="treatment__wire treatment__wire--bold" d="M44 96C44 37 61 15 80 15S116 37 116 96" />
-                <path class="treatment__wire" d="M69 52 50 46M69 64 47 70M91 52 110 46M91 64 113 70" />
-                <rect class="treatment__plate" x="68" y="48" width="24" height="20" rx="4" />
-                <circle class="treatment__screw" cx="80" cy="58" r="4.5" />
-              </svg>
-            </div>
+            <figure class="treatment__photo">
+              <!-- Foto provisional (ver assets/images/tratamientos/fuentes.txt). Reemplazar por fotos propias cuando existan. -->
+              <img src="assets/images/tratamientos/ortopedia-retencion.jpg" width="900" height="1350" loading="lazy" decoding="async" alt="Niña sonriente con su retenedor y su estuche">
+            </figure>
             <div class="treatment__body">
               <h3 class="card__title">Aparatos ortopédicos y retención</h3>
               <p>Guiamos el crecimiento de los huesos maxilares en niños para prevenir problemas futuros, y aseguramos que
@@ -475,44 +447,53 @@
       </div>
     </section>
 
-    <!-- ============ PARALLAX (puerta en arco hacia la consulta) ============
-         Cuatro capas que se mueven a distinta velocidad con GSAP ScrollTrigger (js/modules/parallax-layers.js):
-         1 fondo fotográfico, 2 sonrisa con brackets del logo, 3 título, 4 marco en arco (la capa más cercana).
-         Sin JS o con movimiento reducido queda como una composición estática. -->
-    <section class="parallax" aria-labelledby="parallax-title">
-      <div class="parallax__header">
-        <div class="parallax__layers" data-parallax-layers>
-          <!-- REEMPLAZAR_IMAGEN (opcional): assets/images/parallax-consultorio.jpg, horizontal, 1600×900 px o más.
-               Hoy es un recorte desenfocado de la lámpara del consultorio (de doctora-v2.jpg). Se tiñe de vino desde
-               abajo para que el título se lea. Sirve otra foto del consultorio o de una sonrisa (con consentimiento).
-               El alt queda vacío porque es decorativa. -->
-          <div class="parallax__layer parallax__photo" data-parallax-layer="1">
-            <img src="assets/images/parallax-consultorio.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="">
-          </div>
-          <div class="parallax__layer parallax__smile" data-parallax-layer="2" aria-hidden="true">
-            <svg viewBox="0 0 1030 450" focusable="false"><use href="#logo-sonrisa" /></svg>
-          </div>
-          <div class="parallax__layer parallax__title-wrap" data-parallax-layer="3">
-            <h2 class="parallax__title" id="parallax-title">Sonríe con confianza</h2>
-          </div>
-          <div class="parallax__layer parallax__frame" data-parallax-layer="4" aria-hidden="true"></div>
-        </div>
+    <!-- ============ ZOOM PARALLAX (galería que se abre al hacer scroll) ============
+         Adaptación del componente "Zoom Parallax" (React + framer-motion) a este sitio sin React:
+         GSAP ScrollTrigger escala cada foto mientras la escena queda fija (js/modules/zoom-parallax.js).
+         La foto del centro (la primera) termina ocupando toda la pantalla y revela el mensaje.
+         Sin JS o con movimiento reducido se ve como un collage estático. -->
+    <section class="zoom" aria-labelledby="zoom-title">
+      <div class="container zoom__intro">
+        <h2 id="zoom-title">Sonríe con confianza</h2>
+        <p class="section__intro">Un consultorio pensado para que te sientas en calma, de la valoración al último control.</p>
       </div>
 
-      <div class="container parallax__content">
-        <svg class="parallax__icon" viewBox="0 0 24 24" width="48" height="48" aria-hidden="true" focusable="false"
-          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Lucide "smile-plus" (ISC) -->
-          <path d="M13.267 2.08a10 10 0 108.653 8.653" />
-          <path d="M15 10V9" />
-          <path d="M16 5h6" />
-          <path d="M16.472 15a6 6 0 01-8.943 0" />
-          <path d="M19 2v6" />
-          <path d="M9 10V9" />
-        </svg>
-        <p class="parallax__text">Cada sonrisa tiene su propio ritmo. Antes de empezar te explico qué haremos en cada
-          etapa, para que siempre sepas en qué punto vas.</p>
-        <a class="btn btn--outline" href="#proceso">Ver cómo es el proceso</a>
+      <div class="zoom__track" data-zoom>
+        <div class="zoom__stage">
+          <!-- REEMPLAZAR_IMAGEN: assets/images/galeria/zoom-1.jpg … zoom-7.jpg (fotos provisionales de Unsplash/Pexels,
+               ver assets/images/galeria/fuentes.txt). La 1 es la del centro: termina a pantalla completa. -->
+          <div class="zoom__item" data-zoom-scale="4">
+            <div class="zoom__frame zoom__frame--1">
+              <img src="assets/images/galeria/zoom-1.jpg" width="1600" height="1070" loading="lazy" decoding="async" alt="Sillón de un consultorio de ortodoncia luminoso"></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="5" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--2"><img src="assets/images/galeria/zoom-2.jpg" width="1000" height="562" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="6" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--3"><img src="assets/images/galeria/zoom-3.jpg" width="800" height="1200" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="5" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--4"><img src="assets/images/galeria/zoom-4.jpg" width="1000" height="750" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="6" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--5"><img src="assets/images/galeria/zoom-5.jpg" width="800" height="1200" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="8" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--6"><img src="assets/images/galeria/zoom-6.jpg" width="1000" height="667" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <div class="zoom__item" data-zoom-scale="9" aria-hidden="true">
+            <div class="zoom__frame zoom__frame--7"><img src="assets/images/galeria/zoom-7.jpg" width="800" height="1200" loading="lazy" decoding="async" alt=""></div>
+          </div>
+          <!-- El mensaje no escala: aparece encima cuando la foto del centro ya llenó la pantalla -->
+          <div class="zoom__message" data-zoom-message>
+            <p class="zoom__message-title">Tu sonrisa empieza con una conversación</p>
+            <a class="btn btn--accent btn--lg" target="_blank" rel="noopener noreferrer"
+              href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia.">
+              <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+              Agendar valoración
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -767,7 +748,7 @@
   <script defer src="js/vendor/gsap.min.js"></script>
   <script defer src="js/vendor/ScrollTrigger.min.js"></script>
   <script defer src="js/vendor/lenis.min.js"></script>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js?v=3"></script>
 </body>
 
-</html>
+</html>
