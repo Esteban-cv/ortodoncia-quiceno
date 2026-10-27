@@ -652,10 +652,21 @@ html:not(.js) .menu-toggle {
 }
 
 .js .site-nav__link {
+  gap: var(--space-sm);
   width: 100%;
   min-height: 3.25rem;
   border-bottom: 1px solid var(--color-line);
   font-size: var(--fs-lg);
+}
+
+/* Los iconos del menú solo se ven en el panel móvil, donde ayudan a ubicar la sección */
+.site-nav__icon {
+  display: none;
+}
+
+.js .site-nav__icon {
+  display: block;
+  color: var(--color-primary);
 }
 
 .site-nav__cta {
@@ -724,6 +735,10 @@ html:not(.js) .menu-toggle {
   .js .site-nav__link[aria-current="location"] {
     border-bottom-color: var(--color-primary);
   }
+
+  .js .site-nav__icon {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -787,6 +802,23 @@ html:not(.js) .menu-toggle {
 .hero__facts dt {
   color: var(--color-ink-muted);
   font-size: var(--fs-sm);
+}
+
+/* Icono de la etiqueta: pequeño y en el color de marca, para escanear la lista de un vistazo */
+.hero__facts dt,
+.contact .detail-list dt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.hero__facts dt .icon,
+.contact .detail-list dt .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.1em;
+  color: var(--color-primary);
+  opacity: 0.85;
 }
 
 .detail-list dd,
@@ -1232,45 +1264,103 @@ html:not(.js) .menu-toggle {
 
 /* --------------------------------------------------------------------------
    10. PROCESO (secuencia real: por eso lleva numeración)
-   Motivo "alineación": una línea con un punto por paso.
+   Cada paso: foto en arco + un "bracket" con su número. Un arco de alambre dorado
+   une los tres brackets, como el arco de la ortodoncia; se dibuja al aparecer el paso.
    -------------------------------------------------------------------------- */
 .steps {
+  --steps-gap: var(--space-xl);
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--steps-gap);
 }
 
+/* Fotos compactas a propósito: el zoom de arriba ya es el momento visual fuerte.
+   Móvil: miniatura en arco a la izquierda del texto. Escritorio: arco pequeño sobre el paso. */
 .step {
-  position: relative;
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--color-on-band-line);
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  column-gap: var(--space-md);
+  align-items: start;
 }
 
-.step::before {
+.step__photo {
+  grid-row: 1 / span 3;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-arch);
+  background: rgb(233 214 162 / 0.08);
+  outline: 1px solid rgb(233 214 162 / 0.35);
+  outline-offset: 0.3rem;
+}
+
+.step__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.step__marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-block: 0.5rem var(--space-md);
+}
+
+/* El alambre: llega hasta el bracket del paso siguiente (cruza el espacio entre columnas) */
+.step__marker::before {
   content: "";
   position: absolute;
-  top: -5px;
+  top: 50%;
   left: 0;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--color-on-band);
+  right: 0;
+  border-top: 1.5px solid var(--color-on-band-line);
+  transform-origin: left center;
 }
 
 .step__num {
-  display: block;
-  color: var(--color-on-band-muted);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1.5px solid #E9D6A2;
+  border-radius: 0.5rem;
+  background: var(--color-band);
+  color: #E9D6A2;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 600;
   line-height: 1;
 }
 
+/* Aletas del bracket, arriba y abajo */
+.step__num::before,
+.step__num::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1.25rem;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  background: #E9D6A2;
+  translate: -50% 0;
+}
+
+.step__num::before {
+  top: -0.45rem;
+}
+
+.step__num::after {
+  bottom: -0.45rem;
+}
+
 .step__title {
-  margin-top: var(--space-sm);
   margin-bottom: var(--space-xs);
 }
 
 .step p {
+  max-width: 34ch;
   color: var(--color-on-band-muted);
 }
 
@@ -1282,8 +1372,41 @@ html:not(.js) .menu-toggle {
 
 @media (min-width: 48em) {
   .steps {
+    --steps-gap: clamp(1.5rem, 4vw, 3rem);
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .step {
+    display: block;
+  }
+
+  .step__photo {
+    width: min(100%, 15rem);
+    outline-offset: 0.4rem;
+  }
+
+  .step__marker {
+    margin-top: var(--space-lg);
+  }
+
+  .step:not(:last-child) .step__marker::before {
+    right: calc(-1 * var(--steps-gap));
+  }
+}
+
+.js .step.reveal .step__marker::before {
+  scale: 0 1;
+  transition: scale 0.9s var(--ease) 0.25s;
+}
+
+.js .step.reveal.is-visible .step__marker::before {
+  scale: 1 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .step.reveal .step__marker::before {
+    scale: 1 1;
+    transition: none;
   }
 }
 
@@ -1512,15 +1635,48 @@ html:not(.js) .slider__controls {
 }
 
 /* --------------------------------------------------------------------------
-   14. FOOTER
+   14. FOOTER "revelado" (js/modules/sticky-footer.js)
+   Con .is-sticky el panel es fixed al fondo y el <footer> reserva su alto y lo recorta:
+   la página se desliza y lo descubre. Un monograma enorme en dorado tenue firma el cierre.
    -------------------------------------------------------------------------- */
 .site-footer {
   --color-focus: var(--color-on-band);
-  /* Espacio extra abajo para que el botón flotante no tape el texto legal en móvil */
-  padding-block: var(--space-2xl) 6rem;
+  position: relative;
   background: var(--color-footer-bg);
   color: var(--color-on-band-muted);
   font-size: var(--fs-sm);
+}
+
+.site-footer.is-sticky {
+  height: var(--footer-h);
+  clip-path: inset(0);
+}
+
+.site-footer__panel {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-2xl) var(--space-xl);
+  background:
+    radial-gradient(60% 90% at 100% 100%, rgb(233 214 162 / 0.09), transparent 70%),
+    var(--color-footer-bg);
+}
+
+.site-footer.is-sticky .site-footer__panel {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.site-footer__watermark {
+  position: absolute;
+  right: -4%;
+  bottom: -18%;
+  width: clamp(18rem, 42vw, 36rem);
+  height: auto;
+  color: #E9D6A2;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .site-footer a {
@@ -1528,59 +1684,178 @@ html:not(.js) .slider__controls {
 }
 
 .site-footer a:hover {
-  color: var(--color-on-band);
+  color: #E9D6A2;
 }
 
 .site-footer__inner {
+  position: relative;
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-xl) var(--space-lg);
 }
 
 .site-footer .brand--footer {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
   color: #E9D6A2;
-  margin-bottom: var(--space-xs);
 }
 
 .brand--footer .brand__logo,
 .brand--footer .brand__logo--stack {
   height: auto;
-  width: min(14rem, 100%);
+  width: min(13rem, 100%);
 }
 
-.site-footer__nav ul {
+.site-footer__about p {
+  max-width: 30ch;
+}
+
+.site-footer__social {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0 var(--space-lg);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
-.site-footer__nav a {
+.site-footer__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-on-band-line);
+  border-radius: 50%;
+  transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.site-footer__icon:hover {
+  border-color: #E9D6A2;
+  background: rgb(233 214 162 / 0.1);
+}
+
+.site-footer__heading {
+  margin-bottom: var(--space-sm);
+  color: #E9D6A2;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.site-footer__col ul {
+  display: grid;
+}
+
+.site-footer__col a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
 }
 
-.site-footer__legal {
+.site-footer address {
+  font-style: normal;
+}
+
+.site-footer address p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.site-footer address p + p {
+  margin-top: var(--space-sm);
+}
+
+/* La fila del teléfono: el enlace tiene alto táctil, así que el icono se centra con él */
+.site-footer address p:has(a) {
+  align-items: center;
+}
+
+.site-footer address p:has(a) .icon {
+  margin-top: 0;
+}
+
+.site-footer address .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.15em;
+  color: #E9D6A2;
+}
+
+.site-footer__bottom {
+  display: grid;
+  gap: var(--space-xs);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--color-on-band-line);
+  font-size: 0.8125rem;
 }
 
-@media (min-width: 48em) {
-  .site-footer {
-    padding-bottom: var(--space-2xl);
+/* Al descubrirse, las columnas entran con un desenfoque breve, una tras otra (como el original) */
+.js .site-footer.is-sticky .site-footer__anim {
+  opacity: 0;
+}
+
+.js .site-footer.is-sticky.is-revealed .site-footer__anim {
+  opacity: 1;
+  animation: footer-in var(--dur-slow) var(--ease) backwards;
+}
+
+.site-footer__anim:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.site-footer__anim:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.site-footer__anim:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@keyframes footer-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* Móvil: marca, Visítanos y el cierre a todo el ancho; las dos listas lado a lado */
+.site-footer__inner {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.site-footer__about,
+.site-footer__col--visit,
+.site-footer__bottom {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 64em) {
+  .site-footer__col--visit {
+    grid-column: auto;
   }
 
   .site-footer__inner {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+  }
+
+  .site-footer__about {
+    grid-column: auto;
+  }
+
+  .site-footer__bottom {
     grid-template-columns: 1fr auto;
-    align-items: start;
+    margin-top: var(--space-lg);
   }
+}
 
-  .site-footer__nav ul {
-    justify-content: flex-end;
-    max-width: 22rem;
-  }
-
-  .site-footer__legal {
-    grid-column: 1 / -1;
+@media (prefers-reduced-motion: reduce) {
+  .js .site-footer.is-sticky .site-footer__anim {
+    opacity: 1;
+    animation: none;
   }
 }
 

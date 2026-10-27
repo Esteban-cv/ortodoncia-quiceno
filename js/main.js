@@ -11,6 +11,7 @@ import { initSlider } from './modules/slider.js';
 import { initParallax } from './modules/parallax.js';
 import { initZoomParallax } from './modules/zoom-parallax.js?v=4';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
+import { initStickyFooter } from './modules/sticky-footer.js?v=7';
 
 const root = document.documentElement;
 
@@ -26,3 +27,4 @@ initSlider();
 initParallax();
 initZoomParallax();
 initSmoothScroll();
+initStickyFooter();
