@@ -22,6 +22,24 @@
     if (meta) meta.setAttribute('content', '#1D0911');
   }
 
+  // Esqueleto del texto de la portada mientras llegan las fuentes.
+  // En conexiones rápidas dura milisegundos; en lentas se ve el brillo en vez del salto
+  // de tipografía. Tope de 2,5 s: el texto nunca queda oculto más que eso.
+  if (document.fonts && document.fonts.load && window.Promise) {
+    root.classList.add('fonts-loading');
+    var showText = function () {
+      root.classList.remove('fonts-loading');
+    };
+    window.setTimeout(showText, 2500);
+    // Las reglas @font-face están en styles.css, que aún no se ha leído: se piden al terminar el HTML
+    document.addEventListener('DOMContentLoaded', function () {
+      Promise.all([
+        document.fonts.load('700 1em "Montserrat"'),
+        document.fonts.load('400 1em "DM Sans"')
+      ]).then(showText, showText);
+    });
+  }
+
   // Red de seguridad: si main.js (módulo ES) no llega a ejecutarse, por ejemplo
   // al abrir index.html con doble clic (file://) donde el navegador bloquea módulos,
   // se quita la clase "js" para que todo el contenido quede visible y navegable.

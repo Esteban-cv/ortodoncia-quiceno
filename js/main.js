@@ -3,11 +3,12 @@
  * Cada módulo expone un init que comprueba que sus elementos existan,
  * así un componente ausente nunca rompe a los demás.
  */
+import { initSkeleton } from './modules/skeleton.js?v=10';
 import { initTheme } from './modules/theme.js';
 import { initNav } from './modules/nav.js';
 import { initFab } from './modules/fab.js';
 import { initReveal } from './modules/reveal.js';
-import { initSlider } from './modules/slider.js';
+import { initCases } from './modules/cases.js?v=9';
 import { initParallax } from './modules/parallax.js';
 import { initZoomParallax } from './modules/zoom-parallax.js?v=4';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
@@ -19,11 +20,13 @@ const root = document.documentElement;
 root.classList.add('js');
 root.setAttribute('data-js-ready', '');
 
+// Primero: marca las fotos que ya cargaron antes de que nada más se ejecute
+initSkeleton();
 initTheme();
 initNav();
 initFab();
 initReveal();
-initSlider();
+initCases();
 initParallax();
 initZoomParallax();
 initSmoothScroll();

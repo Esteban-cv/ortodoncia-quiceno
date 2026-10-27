@@ -1,6 +1,6 @@
 # Dra. Laura Vanessa Quiceno — Ortodoncia
 
-Sitio web de una sola página (HTML5 + CSS3 + JavaScript ES6+), sin frameworks y sin build. Todo es autoalojado: fuentes, íconos y las dos librerías de animación (GSAP y Lenis, en `js/vendor/`). Listo para Cloudflare Pages.
+Sitio web de una sola página (HTML5 + CSS3 + JavaScript ES6+), sin frameworks y sin build. Todo es autoalojado: fuentes, íconos y las dos librerías de animación (GSAP y Lenis, en `js/vendor/`). Listo para Render o Cloudflare Pages.
 
 ## Estructura
 
@@ -29,6 +29,7 @@ ortodoncia-quiceno/
 ├── apple-touch-icon.png      ícono para iPhone/iPad (180 × 180)
 ├── robots.txt
 ├── _headers                  cabeceras de seguridad y caché (Cloudflare Pages)
+├── render.yaml               Blueprint de Render con las mismas cabeceras
 └── README.md
 ```
 
@@ -43,6 +44,16 @@ python3 -m http.server 8000
 ```
 
 Si abres el archivo con doble clic, el sitio sigue siendo legible (el contenido queda visible y la navegación por anclas funciona), pero el menú móvil, el slider, el tema y el parallax no estarán activos.
+
+## Desplegar en Render (plan gratuito)
+
+El repositorio trae `render.yaml` (Blueprint): un sitio estático gratuito, sin build, que publica la raíz y aplica las mismas cabeceras de seguridad y caché que `_headers`.
+
+1. Entra a [render.com](https://render.com) con tu cuenta de GitHub.
+2. **New → Blueprint** → elige el repositorio `ortodoncia-quiceno` → **Apply**.
+3. Render publica el sitio en `https://ortodoncia-quiceno.onrender.com` (o un nombre parecido si ese ya existe) y lo vuelve a publicar con cada push a `main`.
+
+Los sitios estáticos de Render no se duermen (eso solo pasa con los servicios web gratuitos).
 
 ## Desplegar en Cloudflare Pages
 

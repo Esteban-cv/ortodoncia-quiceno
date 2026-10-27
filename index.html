@@ -31,8 +31,8 @@
   <link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Script síncrono anti-parpadeo del tema (ver comentario en el archivo) -->
-  <script src="js/theme-init.js"></script>
-  <link rel="stylesheet" href="css/styles.css?v=8">
+  <script src="js/theme-init.js?v=11"></script>
+  <link rel="stylesheet" href="css/styles.css?v=11">
 
   <!-- Datos estructurados: solo información real proporcionada. Sin reseñas ni valoraciones. -->
   <script type="application/ld+json">
@@ -587,60 +587,130 @@
     <!-- ============ CASOS CLÍNICOS ============ -->
     <section class="section cases" id="casos" aria-labelledby="cases-title">
       <div class="container">
-        <div class="section__header">
-          <h2 id="cases-title">Casos clínicos</h2>
-          <p class="section__intro">Las fotografías se publican únicamente con el consentimiento firmado del paciente.
-          </p>
+        <div class="cases__header">
+          <div>
+            <h2 id="cases-title">Casos clínicos</h2>
+            <p class="section__intro">Desliza la línea y mira cómo cambia el arco dental. Cada tratamiento empieza con
+              un objetivo claro.</p>
+          </div>
+          <div class="cases__tabs" role="tablist" aria-label="Tipos de caso" data-cases-tabs>
+            <button class="cases__tab" type="button" role="tab" id="caso-tab-1" aria-controls="caso-1"
+              aria-selected="true">Apiñamiento</button>
+            <button class="cases__tab" type="button" role="tab" id="caso-tab-2" aria-controls="caso-2"
+              aria-selected="false" tabindex="-1">Espacios</button>
+            <button class="cases__tab" type="button" role="tab" id="caso-tab-3" aria-controls="caso-3"
+              aria-selected="false" tabindex="-1">Arco estrecho</button>
+          </div>
         </div>
 
-        <div class="slider" data-slider role="region" aria-roledescription="carrusel" aria-label="Casos clínicos">
-          <ul class="slider__track" data-slider-track tabindex="0"
-            aria-label="Lista de casos. Desplázate con las flechas del teclado o con los botones.">
-            <li class="slider__slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 3">
-              <figure>
-                <!-- REEMPLAZAR_IMAGEN: assets/images/caso-1.jpg, proporción 4:3, recomendado 1200×900 px. Solo con consentimiento firmado. Actualizar alt y descripción. -->
-                <img src="assets/images/caso-1.jpg" width="1200" height="900" loading="lazy" decoding="async"
-                  alt="Caso clínico 1 (descripción por confirmar)">
-                <figcaption>Caso 1: [DESCRIPCIÓN DEL CASO POR CONFIRMAR]</figcaption>
-              </figure>
-            </li>
-            <li class="slider__slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 3">
-              <figure>
-                <!-- REEMPLAZAR_IMAGEN: assets/images/caso-2.jpg, proporción 4:3, recomendado 1200×900 px. Solo con consentimiento firmado. Actualizar alt y descripción. -->
-                <img src="assets/images/caso-2.jpg" width="1200" height="900" loading="lazy" decoding="async"
-                  alt="Caso clínico 2 (descripción por confirmar)">
-                <figcaption>Caso 2: [DESCRIPCIÓN DEL CASO POR CONFIRMAR]</figcaption>
-              </figure>
-            </li>
-            <li class="slider__slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 3">
-              <figure>
-                <!-- REEMPLAZAR_IMAGEN: assets/images/caso-3.jpg, proporción 4:3, recomendado 1200×900 px. Solo con consentimiento firmado. Actualizar alt y descripción. -->
-                <img src="assets/images/caso-3.jpg" width="1200" height="900" loading="lazy" decoding="async"
-                  alt="Caso clínico 3 (descripción por confirmar)">
-                <figcaption>Caso 3: [DESCRIPCIÓN DEL CASO POR CONFIRMAR]</figcaption>
-              </figure>
-            </li>
-          </ul>
+        <div class="cases__stage">
+          <div class="case" id="caso-1" role="tabpanel" aria-labelledby="caso-tab-1" tabindex="0" data-case>
+            <!-- REEMPLAZAR_IMAGEN: cuando haya fotos reales (con consentimiento firmado), cambiar las dos
+                 ilustraciones por caso-1-antes.jpg y caso-1-despues.jpg (mismo encuadre, 3:2, 1200×800 px),
+                 actualizar los alt y quitar la etiqueta "Ilustración de referencia". -->
+            <div class="compare" data-compare>
+              <img class="compare__img" src="assets/images/casos/caso-1-despues.svg" width="1200" height="800"
+                loading="lazy" decoding="async" alt="Después: el mismo arco con los dientes alineados">
+              <div class="compare__before" data-compare-before>
+                <img class="compare__img" src="assets/images/casos/caso-1-antes.svg" width="1200" height="800"
+                  loading="lazy" decoding="async" alt="Antes: arco dental con dientes montados y girados">
+              </div>
+              <span class="compare__label compare__label--before" aria-hidden="true">Antes</span>
+              <span class="compare__label compare__label--after" aria-hidden="true">Después</span>
+              <span class="compare__note">Ilustración de referencia</span>
+              <div class="compare__handle" aria-hidden="true">
+                <span class="compare__knob">
+                  <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+                    <path d="M9 7 4 12l5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <input class="compare__range" type="range" min="0" max="100" value="50" data-compare-range
+                aria-label="Comparar antes y después: apiñamiento">
+            </div>
 
-          <!-- Los controles solo funcionan con JavaScript; sin él, el scroll nativo sigue disponible -->
-          <div class="slider__controls">
-            <p class="slider__status" data-slider-status aria-live="polite">Caso 1 de 3</p>
-            <div class="slider__buttons">
-              <button class="icon-btn slider__btn" type="button" data-slider-prev aria-label="Caso anterior"
-                aria-disabled="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                  <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.9"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-              <button class="icon-btn slider__btn" type="button" data-slider-next aria-label="Caso siguiente">
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                  <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.9"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
+            <div class="case__info">
+              <h3 class="case__title">Apiñamiento</h3>
+              <p>Los dientes no tienen espacio suficiente y se montan o se giran. Además de la estética, dificulta el cepillado.</p>
+              <p class="case__fix"><strong>Cómo se corrige.</strong> Con brackets o alineadores se gana el espacio necesario y cada diente vuelve a su lugar en el arco.</p>
+              <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
             </div>
           </div>
+          <div class="case" id="caso-2" role="tabpanel" aria-labelledby="caso-tab-2" tabindex="0" data-case>
+            <!-- REEMPLAZAR_IMAGEN: cuando haya fotos reales (con consentimiento firmado), cambiar las dos
+                 ilustraciones por caso-2-antes.jpg y caso-2-despues.jpg (mismo encuadre, 3:2, 1200×800 px),
+                 actualizar los alt y quitar la etiqueta "Ilustración de referencia". -->
+            <div class="compare" data-compare>
+              <img class="compare__img" src="assets/images/casos/caso-2-despues.svg" width="1200" height="800"
+                loading="lazy" decoding="async" alt="Después: el mismo arco con los espacios cerrados">
+              <div class="compare__before" data-compare-before>
+                <img class="compare__img" src="assets/images/casos/caso-2-antes.svg" width="1200" height="800"
+                  loading="lazy" decoding="async" alt="Antes: arco dental con espacios entre los dientes">
+              </div>
+              <span class="compare__label compare__label--before" aria-hidden="true">Antes</span>
+              <span class="compare__label compare__label--after" aria-hidden="true">Después</span>
+              <span class="compare__note">Ilustración de referencia</span>
+              <div class="compare__handle" aria-hidden="true">
+                <span class="compare__knob">
+                  <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+                    <path d="M9 7 4 12l5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <input class="compare__range" type="range" min="0" max="100" value="50" data-compare-range
+                aria-label="Comparar antes y después: espacios entre dientes">
+            </div>
+
+            <div class="case__info">
+              <h3 class="case__title">Espacios entre dientes</h3>
+              <p>Separaciones visibles entre los dientes, a veces solo entre los dos de adelante (diastema).</p>
+              <p class="case__fix"><strong>Cómo se corrige.</strong> Los brackets o alineadores cierran los espacios de forma gradual y controlada.</p>
+              <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
+            </div>
+          </div>
+          <div class="case" id="caso-3" role="tabpanel" aria-labelledby="caso-tab-3" tabindex="0" data-case>
+            <!-- REEMPLAZAR_IMAGEN: cuando haya fotos reales (con consentimiento firmado), cambiar las dos
+                 ilustraciones por caso-3-antes.jpg y caso-3-despues.jpg (mismo encuadre, 3:2, 1200×800 px),
+                 actualizar los alt y quitar la etiqueta "Ilustración de referencia". -->
+            <div class="compare" data-compare>
+              <img class="compare__img" src="assets/images/casos/caso-3-despues.svg" width="1200" height="800"
+                loading="lazy" decoding="async" alt="Después: el arco con forma de U y los dientes alineados">
+              <div class="compare__before" data-compare-before>
+                <img class="compare__img" src="assets/images/casos/caso-3-antes.svg" width="1200" height="800"
+                  loading="lazy" decoding="async" alt="Antes: arco dental angosto en forma de V">
+              </div>
+              <span class="compare__label compare__label--before" aria-hidden="true">Antes</span>
+              <span class="compare__label compare__label--after" aria-hidden="true">Después</span>
+              <span class="compare__note">Ilustración de referencia</span>
+              <div class="compare__handle" aria-hidden="true">
+                <span class="compare__knob">
+                  <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+                    <path d="M9 7 4 12l5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <input class="compare__range" type="range" min="0" max="100" value="50" data-compare-range
+                aria-label="Comparar antes y después: arco estrecho">
+            </div>
+
+            <div class="case__info">
+              <h3 class="case__title">Arco estrecho</h3>
+              <p>El maxilar es angosto y los dientes quedan en forma de V. Puede causar mordida cruzada.</p>
+              <p class="case__fix"><strong>Cómo se corrige.</strong> En niños, la ortopedia maxilar ensancha el arco mientras crecen; en adultos suele combinarse con ortodoncia.</p>
+              <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
+            </div>
+          </div>
+        </div>
+
+        <div class="cases__footer">
+          <p>Las fotos de pacientes reales se publican únicamente con su consentimiento firmado.</p>
+          <a class="btn btn--primary" href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20de%20ortodoncia." target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon--wa" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-whatsapp" /></svg>
+            Quiero saber qué necesita mi sonrisa
+          </a>
         </div>
       </div>
     </section>
@@ -846,7 +916,7 @@
   <script defer src="js/vendor/gsap.min.js"></script>
   <script defer src="js/vendor/ScrollTrigger.min.js"></script>
   <script defer src="js/vendor/lenis.min.js"></script>
-  <script type="module" src="js/main.js?v=7"></script>
+  <script type="module" src="js/main.js?v=10"></script>
 </body>
 
 </html>

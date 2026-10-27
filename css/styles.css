@@ -1411,72 +1411,334 @@ html:not(.js) .menu-toggle {
 }
 
 /* --------------------------------------------------------------------------
-   11. CASOS CLÍNICOS (slider con scroll nativo, sin autoplay)
+   11. CASOS CLÍNICOS (js/modules/cases.js)
+   Pestañas por tipo de caso y un comparador antes/después que se arrastra.
+   El comparador es el protagonista: grande, sobre vino oscuro, con el asa en dorado.
    -------------------------------------------------------------------------- */
-.slider__track {
-  display: flex;
-  gap: var(--space-md);
-  padding-bottom: var(--space-xs);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+.cases__header {
+  display: grid;
+  gap: var(--space-lg);
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-.slider__track::-webkit-scrollbar {
-  display: none;
+.cases__header .section__intro {
+  max-width: 40ch;
 }
 
-.slider__slide {
-  flex: 0 0 min(88%, 38rem);
-  scroll-snap-align: start;
-}
-
-.slider__slide img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  background: var(--color-surface-tint);
-}
-
-.slider__slide figcaption {
-  margin-top: var(--space-sm);
-  color: var(--color-ink-muted);
-  font-size: var(--fs-sm);
-}
-
-.slider__controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
-}
-
-.slider__status {
-  color: var(--color-ink-muted);
-  font-size: var(--fs-sm);
-}
-
-.slider__buttons {
-  display: flex;
+/* Móvil: control segmentado de tres partes iguales para que quepa en una fila */
+.cases__tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-xs);
 }
 
-.slider__btn[aria-disabled="true"] {
-  border-color: var(--color-line);
-  opacity: 0.45;
-  cursor: default;
-}
-
-.slider__btn[aria-disabled="true"]:hover {
+.cases__tab {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.4rem;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
   background: transparent;
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 
-/* Sin JS los botones no harían nada: el scroll nativo (táctil/teclado) basta */
-html:not(.js) .slider__controls {
+.cases__tab:hover {
+  background: var(--color-surface-tint);
+}
+
+.cases__tab[aria-selected="true"] {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.case {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+/* Sin JS se ven los tres casos seguidos */
+.case + .case {
+  margin-top: var(--space-xl);
+}
+
+.case[hidden] {
   display: none;
+}
+
+.case:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0.5rem;
+  border-radius: var(--radius-md);
+}
+
+.js .case:not([hidden]) {
+  animation: reveal-in var(--dur-slow) var(--ease);
+}
+
+/* Comparador */
+/* Móvil: cuadrado, recorta los lados vacíos de la ilustración y el arco se ve más grande */
+.compare {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: clamp(1rem, 2.5vw, 1.75rem);
+  background: #2A0A14;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgb(42 10 20 / 0.55);
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.compare:has(.compare__range:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.compare__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.compare__before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.compare__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  background: #E9D6A2;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.compare__knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: #E9D6A2;
+  color: #3A0C1A;
+  box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 0.35);
+  translate: -50% -50%;
+  transition: scale var(--dur-fast) var(--ease);
+}
+
+.compare.is-dragging .compare__knob {
+  scale: 1.08;
+}
+
+.compare__label {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.25rem);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgb(251 244 228 / 0.92);
+  color: #3A0C1A;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.compare__label--before {
+  left: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.compare__label--after {
+  right: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.compare__note {
+  position: absolute;
+  bottom: clamp(0.6rem, 1.5vw, 1rem);
+  left: 50%;
+  color: rgb(233 214 162 / 0.7);
+  font-size: 0.75rem;
+  translate: -50% 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* El range solo da teclado y lector de pantalla; el arrastre lo maneja el contenedor */
+.compare__range {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.case__title {
+  margin-bottom: var(--space-sm);
+}
+
+.case__info p {
+  max-width: 42ch;
+  color: var(--color-ink-muted);
+}
+
+.case__info p + p {
+  margin-top: var(--space-sm);
+}
+
+.case__fix strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.cases__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-line);
+}
+
+.cases__footer p {
+  max-width: 44ch;
+  color: var(--color-ink-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 48em) {
+  .cases__header {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .cases__tabs {
+    display: flex;
+  }
+
+  .cases__tab {
+    padding-inline: 1.15rem;
+    font-size: var(--fs-sm);
+  }
+
+  .compare {
+    aspect-ratio: 3 / 2;
+  }
+
+  .case {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .case:not([hidden]) {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11b. ESQUELETO DE CARGA DE FOTOS (js/modules/skeleton.js)
+   Mientras una foto carga, su marco muestra un brillo suave que lo recorre; al cargar,
+   la foto entra con un fundido. Solo con .js: si el JS falla, theme-init.js quita .js
+   y las fotos se ven normal. El marco conserva su forma (arco, esquinas) porque el
+   brillo vive en el propio contenedor.
+   -------------------------------------------------------------------------- */
+:is(.hero__arch, .about__photo, .treatment__photo, .zoom__frame, .step__photo, .compare, .contact__photo) {
+  --skeleton-base: var(--color-surface-tint);
+  --skeleton-shine: rgb(255 255 255 / 0.55);
+}
+
+:is(.zoom__frame, .step__photo, .compare) {
+  --skeleton-base: rgb(233 214 162 / 0.08);
+  --skeleton-shine: rgb(233 214 162 / 0.14);
+}
+
+.js :is(.hero__arch, .about__photo, .treatment__photo, .zoom__frame, .step__photo, .compare, .contact__photo):has(> img:not(.is-loaded)) {
+  background-color: var(--skeleton-base);
+  background-image: linear-gradient(100deg, transparent 30%, var(--skeleton-shine) 50%, transparent 70%);
+  background-size: 250% 100%;
+  animation: skeleton-shine 1.6s linear infinite;
+}
+
+.js :is(.hero__arch, .about__photo, .treatment__photo, .zoom__frame, .step__photo, .compare, .compare__before, .contact__photo) > img {
+  transition: opacity 0.45s var(--ease);
+}
+
+.js :is(.hero__arch, .about__photo, .treatment__photo, .zoom__frame, .step__photo, .compare, .compare__before, .contact__photo) > img:not(.is-loaded) {
+  opacity: 0;
+}
+
+/* Texto de la portada mientras cargan las fuentes (clase puesta por theme-init.js).
+   Cada línea de texto se vuelve una barra redondeada con el mismo brillo de las fotos. */
+.fonts-loading :is(.hero__title, .hero__lead, .hero__facts dt, .hero__facts dd) {
+  --skeleton-base: var(--color-surface-tint);
+  --skeleton-shine: rgb(255 255 255 / 0.55);
+  color: transparent;
+  /* Respaldo sin la unidad lh: un bloque sólido */
+  background-image:
+    linear-gradient(100deg, transparent 30%, var(--skeleton-shine) 50%, transparent 70%),
+    linear-gradient(var(--skeleton-base), var(--skeleton-base));
+  background-image:
+    linear-gradient(100deg, transparent 30%, var(--skeleton-shine) 50%, transparent 70%),
+    repeating-linear-gradient(to bottom, transparent 0 0.2lh, var(--skeleton-base) 0.2lh 0.8lh, transparent 0.8lh 1lh);
+  background-size: 250% 100%, 100% 100%;
+  border-radius: 0.4rem;
+  animation: skeleton-shine 1.6s linear infinite;
+}
+
+.fonts-loading .hero__facts .icon {
+  opacity: 0;
+}
+
+.fonts-loading .hero__facts dt {
+  align-self: start;
+}
+
+.fonts-loading .hero__actions .btn {
+  border-color: transparent;
+  background: var(--color-surface-tint);
+  box-shadow: none;
+  color: transparent;
+}
+
+@keyframes skeleton-shine {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -150% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js :is(.hero__arch, .about__photo, .treatment__photo, .zoom__frame, .step__photo, .compare, .contact__photo):has(> img:not(.is-loaded)) {
+    animation: none;
+    background-image: none;
+  }
+
+  .fonts-loading :is(.hero__title, .hero__lead, .hero__facts dt, .hero__facts dd) {
+    animation: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
