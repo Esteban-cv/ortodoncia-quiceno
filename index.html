@@ -31,8 +31,8 @@
   <link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Script síncrono anti-parpadeo del tema (ver comentario en el archivo) -->
-  <script src="js/theme-init.js?v=11"></script>
-  <link rel="stylesheet" href="css/styles.css?v=11">
+  <script src="js/theme-init.js?v=12"></script>
+  <link rel="stylesheet" href="css/styles.css?v=14">
 
   <!-- Datos estructurados: solo información real proporcionada. Sin reseñas ni valoraciones. -->
   <script type="application/ld+json">
@@ -56,6 +56,15 @@
 </head>
 
 <body>
+  <!-- Intro de vidrio con el monograma (js/modules/glass-intro.js). Solo se muestra con la clase
+       "intro-on" que pone theme-init.js; sin JavaScript nunca aparece. -->
+  <div class="glass-intro" data-glass-intro aria-hidden="true">
+    <div class="glass-intro__stage">
+      <svg class="glass-intro__mark" viewBox="52.0 48.0 1046.0 802.0" focusable="false">
+        <use href="#logo-monograma" />
+      </svg>
+    </div>
+  </div>
   <!-- Logo: piezas reutilizables (horizontal, completo, monograma, sonrisa). Usan currentColor: el color sale del CSS (clase .brand, .ornament, etc.). -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <symbol id="logo-horizontal" viewBox="-6.0 -6.0 1476.7 332.0">
@@ -358,10 +367,6 @@
               <dt>Año de grado (Especialización)</dt>
               <dd>2027</dd>
             </div>
-            <div class="detail-list__row">
-              <dt>Registro profesional</dt>
-              <dd>[NÚMERO POR CONFIRMAR]</dd>
-            </div>
           </dl>
         </div>
       </div>
@@ -469,11 +474,11 @@
             </figure>
             <div class="treatment__body">
               <h3 class="card__title">Aparatos ortopédicos y retención</h3>
-              <p>Guiamos el crecimiento de los huesos maxilares en niños para prevenir problemas futuros, y aseguramos que
-                tu sonrisa se mantenga firme y hermosa al finalizar tu tratamiento.</p>
+              <p>Guiamos el crecimiento de los maxilares en niños para prevenir problemas futuros, y cuidamos que tu
+                sonrisa se mantenga firme al terminar el tratamiento.</p>
               <dl class="treatment__facts">
                 <div><dt>Tipo</dt><dd>Fijo o removible</dd></div>
-                <div><dt>Etapa</dt><dd>Crecimiento y final del tratamiento</dd></div>
+                <div><dt>Etapa</dt><dd>Crecimiento y retención</dd></div>
               </dl>
               <a class="treatment__ask" target="_blank" rel="noopener noreferrer"
                 href="https://wa.me/573178932327?text=Hola%20Dra.%2C%20quiero%20informaci%C3%B3n%20sobre%20aparatos%20ortop%C3%A9dicos%20y%20retenci%C3%B3n.">
@@ -617,7 +622,6 @@
               </div>
               <span class="compare__label compare__label--before" aria-hidden="true">Antes</span>
               <span class="compare__label compare__label--after" aria-hidden="true">Después</span>
-              <span class="compare__note">Ilustración de referencia</span>
               <div class="compare__handle" aria-hidden="true">
                 <span class="compare__knob">
                   <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
@@ -632,8 +636,8 @@
 
             <div class="case__info">
               <h3 class="case__title">Apiñamiento</h3>
-              <p>Los dientes no tienen espacio suficiente y se montan o se giran. Además de la estética, dificulta el cepillado.</p>
-              <p class="case__fix"><strong>Cómo se corrige.</strong> Con brackets o alineadores se gana el espacio necesario y cada diente vuelve a su lugar en el arco.</p>
+              <p>Los dientes tienen poco espacio y se montan o se tuercen, dificultando la limpieza.</p>
+              <p class="case__fix"><strong>¿Cómo se corrige?</strong><br>Con brackets o alineadores que los acomodan progresivamente.</p>
               <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
             </div>
           </div>
@@ -664,8 +668,8 @@
 
             <div class="case__info">
               <h3 class="case__title">Espacios entre dientes</h3>
-              <p>Separaciones visibles entre los dientes, a veces solo entre los dos de adelante (diastema).</p>
-              <p class="case__fix"><strong>Cómo se corrige.</strong> Los brackets o alineadores cierran los espacios de forma gradual y controlada.</p>
+              <p>Son separaciones visibles entre los dientes, especialmente entre los delanteros.</p>
+              <p class="case__fix"><strong>¿Cómo se corrige?</strong><br>Con brackets o alineadores que cierran los espacios gradualmente.</p>
               <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
             </div>
           </div>
@@ -696,8 +700,8 @@
 
             <div class="case__info">
               <h3 class="case__title">Arco estrecho</h3>
-              <p>El maxilar es angosto y los dientes quedan en forma de V. Puede causar mordida cruzada.</p>
-              <p class="case__fix"><strong>Cómo se corrige.</strong> En niños, la ortopedia maxilar ensancha el arco mientras crecen; en adultos suele combinarse con ortodoncia.</p>
+              <p>El maxilar es estrecho y puede afectar la forma de la sonrisa y el encaje de los dientes al morder.</p>
+              <p class="case__fix"><strong>¿Cómo se corrige?</strong> <br>En niños, se puede ensanchar con ortopedia maxilar; en adultos, el tratamiento se adapta a cada caso.</p>
               <!-- Con un caso real se puede añadir aquí: tratamiento usado, duración y una frase del paciente. -->
             </div>
           </div>
@@ -782,7 +786,7 @@
           <dl class="detail-list">
             <div class="detail-list__row">
               <dt><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>Teléfono y WhatsApp</dt>
-              <dd><a href="tel:+573178932327">317 893 2327</a></dd>
+              <dd><a href="tel:+573178932327">+57 317 893 2327</a></dd>
             </div>
             <div class="detail-list__row">
               <dt><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-mail" /></svg>Correo</dt>
@@ -794,11 +798,11 @@
             </div>
             <div class="detail-list__row">
               <dt><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-clock" /></svg>Horario</dt>
-              <dd>8:00 a. m. a 5:00 p. m.<br>[DÍAS DE ATENCIÓN POR CONFIRMAR]</dd>
+              <dd>8:00 a. m. a 5:00 p. m.</dd>
             </div>
             <div class="detail-list__row">
               <dt><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-instagram" /></svg>Instagram</dt>
-              <dd>[INSTAGRAM POR CONFIRMAR]</dd>
+              <dd><a href="https://www.instagram.com/lauravqc15?srtk=MTR6dTFucXR5emlubA==" target="_blank" rel="noopener noreferrer">Lauravqc15</a></dd>
             </div>
           </dl>
 
@@ -885,12 +889,12 @@
           <address>
             <p><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg><span>Carrera 16 #13a-54<br>Cali, Valle del Cauca</span></p>
             <p><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-clock" /></svg><span>8:00 a. m. a 5:00 p. m.</span></p>
-            <p><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg><a href="tel:+573178932327">317 893 2327</a></p>
+            <p><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg><a href="tel:+573178932327">+57 317 893 2327</a></p>
           </address>
         </div>
 
         <div class="site-footer__bottom">
-          <p>© 2026 Dra. Laura Quiceno. Registro profesional: [NÚMERO POR CONFIRMAR]</p>
+          <p>© 2026 Dra. Laura Quiceno.</p>
           <p>La información de este sitio es general y no reemplaza una valoración profesional.</p>
         </div>
       </div>
@@ -914,7 +918,7 @@
   <script defer src="js/vendor/gsap.min.js"></script>
   <script defer src="js/vendor/ScrollTrigger.min.js"></script>
   <script defer src="js/vendor/lenis.min.js"></script>
-  <script type="module" src="js/main.js?v=10"></script>
+  <script type="module" src="js/main.js?v=11"></script>
 </body>
 
 </html>

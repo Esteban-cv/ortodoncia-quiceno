@@ -3,6 +3,7 @@
  * Cada módulo expone un init que comprueba que sus elementos existan,
  * así un componente ausente nunca rompe a los demás.
  */
+import { initGlassIntro } from './modules/glass-intro.js?v=1';
 import { initSkeleton } from './modules/skeleton.js?v=10';
 import { initTheme } from './modules/theme.js';
 import { initNav } from './modules/nav.js';
@@ -20,7 +21,10 @@ const root = document.documentElement;
 root.classList.add('js');
 root.setAttribute('data-js-ready', '');
 
-// Primero: marca las fotos que ya cargaron antes de que nada más se ejecute
+// La intro arranca antes que todo: es lo primero que se ve
+initGlassIntro();
+
+// Luego: marca las fotos que ya cargaron antes de que nada más se ejecute
 initSkeleton();
 initTheme();
 initNav();

@@ -40,10 +40,22 @@
     });
   }
 
+  // Intro de vidrio con el logo (js/modules/glass-intro.js): solo la primera vez por sesión
+  // y nunca con movimiento reducido. La clase se pone aquí para que la capa tape la página
+  // desde el primer pintado, sin destello del contenido antes de la animación.
+  var seen = false;
+  try {
+    seen = window.sessionStorage.getItem('intro-visto') === '1';
+  } catch (e) {
+    seen = true; // sin almacenamiento no se puede recordar: mejor no repetirla en cada página
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!seen && !reduce) root.classList.add('intro-on');
+
   // Red de seguridad: si main.js (módulo ES) no llega a ejecutarse, por ejemplo
   // al abrir index.html con doble clic (file://) donde el navegador bloquea módulos,
   // se quita la clase "js" para que todo el contenido quede visible y navegable.
   window.setTimeout(function () {
-    if (!root.hasAttribute('data-js-ready')) root.classList.remove('js');
+    if (!root.hasAttribute('data-js-ready')) root.classList.remove('js', 'intro-on');
   }, 4000);
 })();
