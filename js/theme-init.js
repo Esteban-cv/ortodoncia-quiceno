@@ -8,18 +8,18 @@
   var root = document.documentElement;
   root.classList.add('js');
 
-  // El sitio abre siempre en claro (preferencia de marca).
-  // El tema oscuro solo se aplica si la persona lo eligió antes.
+  // El sitio abre en oscuro (preferencia de marca): data-theme="dark" ya viene en el <html>,
+  // así también se ve oscuro sin JavaScript. Solo se pasa a claro si la persona lo eligió antes.
   var saved = null;
   try {
     saved = window.localStorage.getItem('theme');
   } catch (e) {
     // localStorage bloqueado (modo privado, políticas del navegador): se ignora.
   }
-  if (saved === 'dark') {
-    root.setAttribute('data-theme', 'dark');
+  if (saved === 'light') {
+    root.removeAttribute('data-theme');
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', '#1D0911');
+    if (meta) meta.setAttribute('content', '#FAF5EC');
   }
 
   // Esqueleto del texto de la portada mientras llegan las fuentes.
