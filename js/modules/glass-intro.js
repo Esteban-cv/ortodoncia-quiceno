@@ -617,6 +617,8 @@ export function initGlassIntro() {
     overlay.remove();
     return;
   }
+  // Avisa a la red de seguridad de theme-init.js que la intro ya se encarga de sí misma
+  root.setAttribute('data-intro-ready', '');
 
   try {
     window.sessionStorage.setItem(SEEN_KEY, '1');

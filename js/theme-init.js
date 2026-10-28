@@ -47,7 +47,7 @@
   try {
     seen = window.sessionStorage.getItem('intro-visto') === '1';
   } catch (e) {
-    seen = true; // sin almacenamiento no se puede recordar: mejor no repetirla en cada página
+    seen = false; // sin almacenamiento (algunos navegadores de apps) igual se muestra
   }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!seen && !reduce) root.classList.add('intro-on');
@@ -56,6 +56,8 @@
   // al abrir index.html con doble clic (file://) donde el navegador bloquea módulos,
   // se quita la clase "js" para que todo el contenido quede visible y navegable.
   window.setTimeout(function () {
-    if (!root.hasAttribute('data-js-ready')) root.classList.remove('js', 'intro-on');
+    if (!root.hasAttribute('data-js-ready')) root.classList.remove('js');
+    // La intro tiene su propio tope; solo se quita aquí si su módulo ni siquiera arrancó
+    if (!root.hasAttribute('data-intro-ready')) root.classList.remove('intro-on');
   }, 4000);
 })();
